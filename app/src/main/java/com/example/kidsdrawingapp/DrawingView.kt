@@ -60,12 +60,12 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) 
 
                 mDrawPath!!.reset()
                 if(touchX != null && touchY!=null) {
-                    mDrawPath!!.moveTo(touchX!!, touchY!!)
+                    mDrawPath!!.moveTo(touchX, touchY)
                 }
             }
             MotionEvent.ACTION_MOVE ->{
                 if(touchX != null && touchY!=null) {
-                    mDrawPath!!.lineTo(touchX, touchX)
+                    mDrawPath!!.lineTo(touchX, touchY)
                 }
             }
             MotionEvent.ACTION_UP ->{
