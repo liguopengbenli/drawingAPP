@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        drawing_view.setSizeForBrush(20f)
+        //drawing_view.setSizeForBrush(20f)
 
         ib_brush.setOnClickListener{
             showBrushSizeChooserDialog()
