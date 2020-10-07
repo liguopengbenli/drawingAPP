@@ -13,16 +13,13 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) 
     private var mCanvasBitmap: Bitmap? = null
     private var mDrawPaint: Paint? = null
     private var mCanvasPaint: Paint? = null
-    private var mBrushSize: Float = 0f
+    private var mBrushSize: Float = 0F
     private var color = Color.BLACK
     private var canvas: Canvas? = null
     private val mPaths = ArrayList<CustomPath>()
 
-
-
     init{
         setupDrawing()
-
     }
 
     private fun setupDrawing() {
@@ -46,9 +43,9 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) 
         super.onDraw(canvas)
         canvas.drawBitmap(mCanvasBitmap!!, 0f, 0f, mCanvasPaint)
         for(path in mPaths){
-            mDrawPath!!.color = path.color
             mDrawPath!!.brushThickness = path.brushThickness
-            canvas.drawPath(path!!, mDrawPaint!!)
+            mDrawPath!!.color = path.color
+            canvas.drawPath(path, mDrawPaint!!)
         }
 
         if(!mDrawPath!!.isEmpty){
@@ -67,10 +64,10 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) 
                 mDrawPath!!.color = color
                 mDrawPath!!.brushThickness = mBrushSize
 
-                mDrawPath!!.reset()
+                mDrawPath!!.reset() //clear
                 if(touchX != null && touchY!=null) {
                     mDrawPath!!.moveTo(touchX, touchY)
-                }
+                }//set to the point (x,y)
             }
             MotionEvent.ACTION_MOVE ->{
                 if(touchX != null && touchY!=null) {
@@ -95,7 +92,6 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) 
 
     internal inner class CustomPath(var color: Int,
                                     var  brushThickness: Float): Path() {
-
 
     }
 
