@@ -8,6 +8,7 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
+import android.media.MediaScannerConnection
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -217,6 +218,17 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this@MainActivity, "file saved successfully : $result", Toast.LENGTH_LONG).show()
             }else{
                 Toast.makeText(this@MainActivity, "something went wrong while saving the file", Toast.LENGTH_LONG).show()
+            }
+            MediaScannerConnection.scanFile(this@MainActivity, arrayOf(result), null){
+                path, uri -> val shareIntent = Intent()
+                shareIntent.action = Intent.ACTION_SEND
+                shareIntent.putExtra(Intent.EXTRA_STREAM, uri)
+                shareIntent.type = "image/png"
+
+                startActivity(
+                    Intent.createChooser(shareIntent, "Share")
+                )
+
             }
         }
 
