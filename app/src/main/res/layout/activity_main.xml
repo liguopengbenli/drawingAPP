@@ -6,18 +6,36 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.example.kidsdrawingapp.DrawingView
-        android:id="@+id/drawing_view"
+    <FrameLayout
+        android:id="@+id/fl_drawing_view_container"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="5dp"
-        android:layout_marginBottom="80dp"
+        android:padding="1dp"
         android:background="@drawable/background_drawing_view_layout"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toTopOf="@id/ll_paint_colors"
-        />
+        >
+        <ImageView
+            android:id="@+id/iv_background"
+            android:scaleType="centerCrop"
+            android:contentDescription="background img"
+            android:src="@drawable/image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+        <com.example.kidsdrawingapp.DrawingView
+            android:id="@+id/drawing_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#80FFFFFF"
+            />
+
+    </FrameLayout>
+
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -27,7 +45,7 @@
         app:layout_constraintBottom_toTopOf="@id/ib_brush"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/drawing_view">
+        app:layout_constraintTop_toBottomOf="@id/fl_drawing_view_container">
 
         <ImageButton
             android:layout_width="25dp"
