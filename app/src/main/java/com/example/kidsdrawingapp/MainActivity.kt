@@ -3,6 +3,8 @@ package com.example.kidsdrawingapp
 import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.ContactsContract
+import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import androidx.core.content.ContextCompat
@@ -50,6 +52,21 @@ class MainActivity : AppCompatActivity() {
             brushDialog.dismiss()
         }
         brushDialog.show()
+    }
 
+    fun paintClicked(view: View){
+        if(view != mImageButtonCurrentPaint) {
+            val imageButton = view as ImageButton
+
+            val colorTag = imageButton.tag.toString()
+            drawing_view.setColor(colorTag)
+            imageButton.setImageDrawable(
+                ContextCompat.getDrawable(this, R.drawable.pallet_pressed)
+            )
+            mImageButtonCurrentPaint!!.setImageDrawable(
+                ContextCompat.getDrawable(this, R.drawable.pallet_normal)
+            )
+            mImageButtonCurrentPaint = view
+        }
     }
 }
